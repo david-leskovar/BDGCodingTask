@@ -1,0 +1,6 @@
+@BDGCodingTask_HostAddress = http://localhost:5027
+
+GET {{BDGCodingTask_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
