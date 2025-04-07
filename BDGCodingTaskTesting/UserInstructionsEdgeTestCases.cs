@@ -10,22 +10,22 @@ namespace BDGCodingTaskTesting
         public void BuyOrderExceedsAvailableLiquidityTest()
         {
             List<Exchange> exchanges = new List<Exchange>
-    {
-        new Exchange
-        {
-            Id = Guid.NewGuid(),
-            Name = "Exchange1",
-            Asks = new List<Order>
             {
-                new Order { Price = 25000, Amount = 3 },
-                new Order { Price = 26000, Amount = 2 },
-                new Order { Price = 27000, Amount = 2 },
-                new Order { Price = 28000, Amount = 2 }
-            },
-            EURBalance = 0,
-            BTCBalance = 5
-        }
-    };
+                new Exchange
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Exchange1",
+                    Asks = new List<Order>
+                    {
+                        new Order { Price = 25000, Amount = 3 },
+                        new Order { Price = 26000, Amount = 2 },
+                        new Order { Price = 27000, Amount = 2 },
+                        new Order { Price = 28000, Amount = 2 }
+                    },
+                    EURBalance = 0,
+                    BTCBalance = 5
+                }
+            };
 
             var service = new UserInstructionsService();
             var result = service.GetUserInstructions("Buy", 10, exchanges);
@@ -44,20 +44,20 @@ namespace BDGCodingTaskTesting
         public void SellOrderExceedsAvailableLiquidityTest()
         {
             List<Exchange> exchanges = new List<Exchange>
-    {
-        new Exchange
-        {
-            Id = Guid.NewGuid(),
-            Name = "Exchange1",
-            Bids = new List<Order>
             {
-                new Order { Price = 27000, Amount = 4 },
-                new Order { Price = 26000, Amount = 3 }
-            },
-            EURBalance = 300000,
-            BTCBalance = 0
-        }
-    };
+                new Exchange
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Exchange1",
+                    Bids = new List<Order>
+                {
+                    new Order { Price = 27000, Amount = 4 },
+                    new Order { Price = 26000, Amount = 3 }
+                },
+                EURBalance = 300000,
+                BTCBalance = 0
+            }
+        };
 
             var service = new UserInstructionsService();
             var result = service.GetUserInstructions("Sell", 10, exchanges);
@@ -70,34 +70,59 @@ namespace BDGCodingTaskTesting
             Assert.Equal(300000 - (4 * 27000 + 3 * 26000), exchanges[0].EURBalance);
         }
 
-        
+
 
         [Fact]
         public void SellPartiallyFillsSingleBidDueToEURLimitTest()
         {
             List<Exchange> exchanges = new List<Exchange>
-    {
-        new Exchange
-        {
-            Id = Guid.NewGuid(),
-            Name = "Exchange1",
-            Bids = new List<Order>
             {
-                new Order { Price = 27000, Amount = 5 }
-            },
-            EURBalance = 40000,
-            BTCBalance = 0
-        }
-    };
+                new Exchange
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Exchange1",
+                    Bids = new List<Order>
+                    {
+                        new Order { Price = 27000, Amount = 5 }
+                    },
+                    EURBalance = 40000,
+                    BTCBalance = 0
+                }
+            };
 
             var service = new UserInstructionsService();
-            var result = service.GetUserInstructions("Sell", 5, exchanges); 
+            var result = service.GetUserInstructions("Sell", 5, exchanges);
 
+            Assert.Equal(UserInstructionCompletion.Semi, result.Item2);
             Assert.Single(result.Item1);
-            var executedOrder = result.Item1[0];
+           
 
-            Assert.Equal(40000m / 27000m,result.Item1[0].Amount);
+            Assert.Equal(40000m / 27000m, result.Item1[0].Amount);
             Assert.Equal(0, exchanges[0].EURBalance);
+
+        }
+        [Fact]
+        public void NoBidsAvailableBuyLimitTest()
+        {
+            List<Exchange> exchanges = new List<Exchange>
+            {
+                new Exchange
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Exchange1",
+                    EURBalance = 40000,
+                    BTCBalance = 0
+                }
+            };
+
+            var service = new UserInstructionsService();
+            var result = service.GetUserInstructions("Sell", 5, exchanges);
+
+            Assert.Equal(UserInstructionCompletion.Not, result.Item2);
+            Assert.Empty(result.Item1);
+            Assert.Equal(40000, exchanges[0].EURBalance);
+            Assert.Equal(0, exchanges[0].BTCBalance);
+
         }
 
 
