@@ -20,7 +20,7 @@ public class OrderMatchingController : ControllerBase
         _userInstructionsService = userInstructionsService;
     }
 
-    [HttpGet(Name = "GetBestExecutionPlan")]
+    [HttpGet("GetBestExecutionPlan",Name = "GetBestExecutionPlan")]
     public ActionResult<OrderResponse> Get([FromQuery]OrderRequest request)
     {
 
