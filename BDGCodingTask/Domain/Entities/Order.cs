@@ -1,4 +1,4 @@
-﻿using BDGCodingTask.Domain.Entities.Enums;
+﻿using BDGCodingTask.Domain.Enums;
 
 namespace BDGCodingTask.Domain.Entities
 {

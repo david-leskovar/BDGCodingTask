@@ -1,5 +1,5 @@
-﻿using System.Text.Json.Serialization;
-using BDGCodingTask.Data;
+﻿using BDGCodingTask.Data;
+using Newtonsoft.Json;
 
 namespace BDGCodingTask.Domain.Entities
 {

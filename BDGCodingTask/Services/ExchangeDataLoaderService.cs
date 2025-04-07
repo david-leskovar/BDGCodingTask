@@ -36,7 +36,7 @@ namespace BDGCodingTask.Services
                     }
 
                     exchange.Id = Guid.NewGuid();
-                    exchange.BTCBalance = 100000;
+                    exchange.BTCBalance = 1000;
                     exchange.EURBalance = 10000000;
                     exchanges.Add(exchange);
 
