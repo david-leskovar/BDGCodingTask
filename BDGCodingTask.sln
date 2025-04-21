@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDGCodingTask", "BDGCodingT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDGCodingTaskTesting", "BDGCodingTaskTesting\BDGCodingTaskTesting.csproj", "{8CBBC5F1-256D-4902-AFFB-864A429F2A9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDGCodingTaskConsole", "BDGCodingTaskConsole\BDGCodingTaskConsole.csproj", "{273E554C-6F3E-4742-AF1B-0C8E37A96D45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8CBBC5F1-256D-4902-AFFB-864A429F2A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CBBC5F1-256D-4902-AFFB-864A429F2A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CBBC5F1-256D-4902-AFFB-864A429F2A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{273E554C-6F3E-4742-AF1B-0C8E37A96D45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{273E554C-6F3E-4742-AF1B-0C8E37A96D45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{273E554C-6F3E-4742-AF1B-0C8E37A96D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{273E554C-6F3E-4742-AF1B-0C8E37A96D45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
